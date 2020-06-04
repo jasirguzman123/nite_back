@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :events
       resources :categories
       resources :event_participations
+      resources :user_follows, only: %i[create index]
     end
   end
 end

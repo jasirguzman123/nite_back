@@ -10,3 +10,7 @@ json.categories event.categories do |category|
 end
 json.localities event.localities
 json.starting_price event.starting_price
+json.followers event.followers
+json.images event.images do |image|
+  json.url url_for(image)
+end

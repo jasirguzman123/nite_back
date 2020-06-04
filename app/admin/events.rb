@@ -5,7 +5,7 @@ ActiveAdmin.register Event do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :address, :owner_type, :owner_id, :starting_hour, :ending_hour, :description
+  permit_params :name, :address, :owner_type, :owner_id, :starting_hour, :ending_hour, :description, images: []
   #
   # or
   #
@@ -14,6 +14,19 @@ ActiveAdmin.register Event do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :address
+      f.input :description
+      f.input :starting_hour
+      f.input :ending_hour
+      f.input :status
+      f.input :images, as: :file, input_html: { multiple: true }
+      f.actions
+    end
+  end
 
   index do
     id_column

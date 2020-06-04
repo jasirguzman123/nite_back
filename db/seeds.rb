@@ -5,10 +5,10 @@ users = []
 
 10.times do
   users << User.create!(
-    email: FFaker::Internet.email, 
-    password: '123456', 
-    name: FFaker::Name.first_name, 
-    last_name: FFaker::Name.last_name, 
+    email: FFaker::Internet.email,
+    password: '123456',
+    name: FFaker::Name.first_name,
+    last_name: FFaker::Name.last_name,
     phone: FFaker::PhoneNumber.short_phone_number,
     birthdate: FFaker::Time.date
   )
@@ -17,10 +17,8 @@ end
 categories = []
 
 10.times do
-  categories << Category.create!(name: FFaker::Lorem.word)
+  categories << Category.create!(name: FFaker::Lorem.word, color: Random.bytes(3).unpack1('H*'))
 end
-
-localities = []
 
 prices = [10000, 45000, 150000, 300000]
 
