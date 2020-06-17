@@ -4,7 +4,7 @@ class Api::V1::EventParticipationsController < Api::V1::ApiController
     if participation.save
       render json: participation, status: :ok
     else
-      render json: { errors: participation.errors.messages }
+      render json: { errors: participation.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
