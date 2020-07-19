@@ -14,3 +14,5 @@ json.followers event.followers
 json.images event.images do |image|
   json.url url_for(image)
 end
+json.latitude event.latitude || 10.9839725
+json.longitude event.longitude || -74.8880589

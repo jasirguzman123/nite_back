@@ -1,24 +1,17 @@
 ActiveAdmin.register Event do
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  permit_params :name, :address, :owner_type, :owner_id, :starting_hour, :ending_hour, :description, images: []
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:name, :address, :owner_type, :owner_id, :starting_hour, :ending_hour, :description]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  permit_params :name, :address, :owner_type, :owner_id, :starting_hour,
+                :ending_hour, :description, :latitude, :longitude, images: []
 
   form do |f|
     f.inputs do
       f.input :name
       f.input :address
+      f.latlng height: 400, api_key: Rails.application.credentials.dig(:google_maps, :api_key),
+               id_lat: 'event_latitude', id_lng: 'event_longitude',
+               default_lat: 10.9839725, default_lng: -74.8880589
+      f.input :latitude
+      f.input :longitude
       f.input :description
       f.input :starting_hour
       f.input :ending_hour
