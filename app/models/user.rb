@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def full_name
     "#{name} #{last_name}"
   end
+
+  def categories
+    events.map(&:categories).flatten.uniq
+  end
 end

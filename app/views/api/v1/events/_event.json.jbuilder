@@ -1,7 +1,9 @@
 json.id event.id
 json.name event.name
 json.address event.address
-json.owner event.owner
+json.owner do
+  json.partial! 'owner', owner: event.owner
+end
 json.starting_hour event.starting_hour
 json.ending_hour event.ending_hour
 json.description event.description
