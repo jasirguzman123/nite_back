@@ -1,10 +1,10 @@
 json.id event.id
 json.name event.name
 json.address event.address
-if event.owner_type == 'User'
-  json.owner event.owner
-else
-  json.owner do
+json.owner do
+  if event.owner_type == 'User'
+    json.partial! 'api/v1/users/user', user: event.owner
+  else
     json.partial! 'api/v1/establishments/establishment', establishment: event.owner
   end
 end
