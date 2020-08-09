@@ -10,6 +10,7 @@ class Event < ApplicationRecord
   has_many_attached :images
 
   enum status: %i[active closed canceled]
+  enum main_category: %i[bar concert sport restaurant]
 
   def starting_price
     localities.order(:price).first&.price

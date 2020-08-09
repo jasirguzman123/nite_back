@@ -21,3 +21,5 @@ json.followers event.followers
 json.images event.images do |image|
   json.url url_for(image)
 end
+json.main_category event.main_category
+json.main_category_code Event.main_categories[event.main_category]

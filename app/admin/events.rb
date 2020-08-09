@@ -1,6 +1,6 @@
 ActiveAdmin.register Event do
 
-  permit_params :name, :address, :owner_type, :owner_id, :starting_hour,
+  permit_params :name, :address, :owner_type, :owner_id, :starting_hour, :main_category,
                 :ending_hour, :description, :latitude, :longitude, images: []
 
   form do |f|
@@ -16,6 +16,7 @@ ActiveAdmin.register Event do
       f.input :starting_hour
       f.input :ending_hour
       f.input :status
+      f.input :main_category
       f.input :images, as: :file, input_html: { multiple: true }
       f.actions
     end
@@ -32,5 +33,4 @@ ActiveAdmin.register Event do
     column :categories
     actions
   end
-  
 end
