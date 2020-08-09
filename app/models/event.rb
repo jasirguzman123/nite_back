@@ -6,9 +6,10 @@ class Event < ApplicationRecord
   has_many :event_participations, dependent: :destroy
   has_many :user_follows, as: :followee, dependent: :destroy
   has_many_attached :images
+  has_one_attached :cover
 
   enum status: %i[active closed canceled]
-  enum main_category: %i[bar concert sport restaurant]
+  enum main_category: %i[bar concert sport restaurant party]
 
   def starting_price
     localities.order(:price).first&.price

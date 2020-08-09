@@ -1,5 +1,5 @@
 class Api::V1::EventsController < Api::V1::ApiController
-  skip_before_action :set_current_user
+  skip_before_action :set_current_user, only: %i[index show]
 
   def index
     events_in_date
@@ -7,6 +7,13 @@ class Api::V1::EventsController < Api::V1::ApiController
 
   def show
     event
+  end
+
+  def create
+    @event = @current_user.events.build(event_params)
+    return if @event.save
+
+    render json: { errors: event.errors.full_messages }
   end
 
   private
@@ -29,5 +36,20 @@ class Api::V1::EventsController < Api::V1::ApiController
 
   def event
     @event ||= Event.find(params[:id])
+  end
+
+  def event_params
+    params.permit(
+      :cover,
+      :name,
+      :address,
+      :starting_hour,
+      :ending_hour,
+      :description,
+      :latitude,
+      :main_category,
+      :longitude,
+      images: []
+    )
   end
 end
