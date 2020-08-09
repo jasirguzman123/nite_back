@@ -1,6 +1,4 @@
 class Event < ApplicationRecord
-  self.per_page = 10
-
   belongs_to :owner, polymorphic: true
   has_many :event_categories, dependent: :destroy
   has_many :categories, through: :event_categories
