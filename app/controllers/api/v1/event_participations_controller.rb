@@ -34,6 +34,6 @@ class Api::V1::EventParticipationsController < Api::V1::ApiController
   end
 
   def participation
-    @participation ||= Participation.find(params[:id])
+    @participation ||= @current_user.event_participations.find(params[:id])
   end
 end
