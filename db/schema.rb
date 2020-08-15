@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_022101) do
+ActiveRecord::Schema.define(version: 2020_08_15_164632) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -85,10 +85,10 @@ ActiveRecord::Schema.define(version: 2020_08_09_022101) do
   create_table "event_participations", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
-    t.integer "locality_id", null: false
     t.integer "nature", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "locality_id"
     t.index ["event_id"], name: "index_event_participations_on_event_id"
     t.index ["locality_id"], name: "index_event_participations_on_locality_id"
     t.index ["user_id"], name: "index_event_participations_on_user_id"
