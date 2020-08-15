@@ -1,6 +1,4 @@
 class Api::V1::EventsController < Api::V1::ApiController
-  skip_before_action :set_current_user, only: %i[index show]
-
   def index
     events_in_date
   end
