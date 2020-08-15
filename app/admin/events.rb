@@ -15,8 +15,9 @@ ActiveAdmin.register Event do
       f.input :description
       f.input :starting_hour
       f.input :ending_hour
-      f.input :status
       f.input :main_category
+      f.input :owner_type, as: :hidden, input_html: { value: 'Establishment' }
+      f.input :owner_id, as: :select, collection: Establishment.all
       f.input :images, as: :file, input_html: { multiple: true }
       f.actions
     end
