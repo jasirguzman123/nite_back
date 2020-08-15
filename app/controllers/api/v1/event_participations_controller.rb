@@ -1,8 +1,8 @@
 class Api::V1::EventParticipationsController < Api::V1::ApiController
   def create
-    participation = current_user.event_participations.build(participation_params)
-    if participation.save
-      render json: participation, status: :ok
+    @participation = current_user.event_participations.build(participation_params)
+    if @participation.save
+      render :show
     else
       render json: { errors: participation.errors.full_messages }, status: :unprocessable_entity
     end
@@ -29,7 +29,8 @@ class Api::V1::EventParticipationsController < Api::V1::ApiController
     params.require(:participation).permit(
       :event_id,
       :locality_id,
-      :nature
+      :nature,
+      :participants_number
     )
   end
 

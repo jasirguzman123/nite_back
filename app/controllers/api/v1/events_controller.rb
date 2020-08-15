@@ -19,7 +19,6 @@ class Api::V1::EventsController < Api::V1::ApiController
   def events
     @events ||= Event.includes(:localities, :categories, :owner)
                      .with_attached_images.all.ransack(params[:q]).result
-                     .paginate(page: params[:page], per_page: 10)
   end
 
   def events_in_date
@@ -29,7 +28,7 @@ class Api::V1::EventsController < Api::V1::ApiController
   end
 
   def date
-    params[:date]
+    params[:date] || Date.today
   end
 
   def event
