@@ -5,5 +5,5 @@ class EventParticipation < ApplicationRecord
 
   enum nature: %i[purchase assistance stored]
 
-  validates :event_id, uniqueness: { scope: :user }, if: :assistance?
+  validates :event_id, uniqueness: { scope: %i[user nature] }
 end
