@@ -10,7 +10,7 @@ class Api::V1::EventsController < Api::V1::ApiController
   end
 
   def create
-    @event = @current_user.events.build(event_params)
+    @event = @current_user.events.build(creation_params)
     return if @event.save
 
     render json: { errors: event.errors.full_messages }
@@ -36,6 +36,12 @@ class Api::V1::EventsController < Api::V1::ApiController
 
   def event
     @event ||= Event.find(params[:id])
+  end
+
+  def creation_params
+    event_params.merge(
+      images: params[:images]['0']
+    )
   end
 
   def event_params
