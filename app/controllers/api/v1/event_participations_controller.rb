@@ -12,6 +12,13 @@ class Api::V1::EventParticipationsController < Api::V1::ApiController
     participations
   end
 
+  def destroy
+    participation.destroy
+    render json: { message: 'success' }, status: :ok
+  rescue => e
+    render json: { errors: e.message }, status: :unprocessable_entity
+  end
+
   private
 
   def participations
@@ -24,5 +31,9 @@ class Api::V1::EventParticipationsController < Api::V1::ApiController
       :locality_id,
       :nature
     )
+  end
+
+  def participation
+    @participation ||= Participation.find(params[:id])
   end
 end

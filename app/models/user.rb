@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def categories
     events.map(&:categories).flatten.uniq
   end
+
+  def participations_in_event(event)
+    event_participations.where(event: event)
+  end
 end
