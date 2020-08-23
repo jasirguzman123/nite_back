@@ -37,7 +37,7 @@ class Api::V1::EventsController < Api::V1::ApiController
 
   def creation_params
     event_params.merge(
-      images: params[:images]['0']
+      images: params.dig(:images, '0')
     )
   end
 
