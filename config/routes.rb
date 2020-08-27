@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
       resources :sessions
-      resources :events
+      resources :events do
+        get :current, on: :collection
+      end
       resources :categories
       resources :event_participations
       resources :establishments

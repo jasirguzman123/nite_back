@@ -14,6 +14,13 @@ class Api::V1::EventsController < Api::V1::ApiController
     render json: { errors: event.errors.full_messages }
   end
 
+  def current
+    @event = @current_user.events.active.first
+    return if @event.nil?
+
+    render :show
+  end
+
   private
 
   def events
