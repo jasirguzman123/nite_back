@@ -8,10 +8,19 @@ class Api::V1::EventsController < Api::V1::ApiController
   end
 
   def create
-    @event = @current_user.events.build(creation_params)
+    @event = @current_user.events.build(event_params)
     return if @event.save
 
-    render json: { errors: event.errors.full_messages }
+    render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def update
+    event.assign_attributes(event_params)
+    if @event.save
+      render :create
+    else
+      render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def current
@@ -40,12 +49,6 @@ class Api::V1::EventsController < Api::V1::ApiController
 
   def event
     @event ||= Event.find(params[:id])
-  end
-
-  def creation_params
-    event_params.merge(
-      images: params.dig(:images, '0')
-    )
   end
 
   def event_params
