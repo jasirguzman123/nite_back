@@ -23,7 +23,7 @@ module Api
           :phone,
           :last_name
         )
-      end 
+      end
     end
   end
 end

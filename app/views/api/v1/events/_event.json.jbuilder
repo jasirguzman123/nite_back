@@ -19,7 +19,13 @@ json.localities event.localities
 json.starting_price event.starting_price
 json.followers event.followers
 json.attendants event.attendants
-json.cover event.cover.service_url if event.cover.attached?
+if event.cover.attached?
+  if Rails.env.production?
+    json.cover event.cover.service_url
+  else
+    json.cover Rails.application.routes.url_helpers.rails_blob_url(event.cover)
+  end
+end
 json.main_category event.main_category
 json.main_category_code Event.main_categories[event.main_category]
 json.latitude event.latitude

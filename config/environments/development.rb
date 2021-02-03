@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.hosts << 'f0986f4662de.ngrok.io'
+  config.hosts << '7648c48008cc.ngrok.io'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -61,3 +61,4 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+Rails.application.routes.default_url_options[:host] = 'https://7648c48008cc.ngrok.io'
